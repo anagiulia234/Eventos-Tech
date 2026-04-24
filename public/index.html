@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventosTech - Gerenciamento de eventos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>eventosTech</h1>
+            <p>Gerenciamento de eventos</p>
+        </header>
+
+        <!-- SEÇÃO DE CADASTRO -->
+        <section class="form-section">
+            <h2>Cadastrar Novo eventos</h2>
+            <form id="eventForm" class="form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome do eventos *</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite o nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="organizador">Organizador *</label>
+                        <input type="text" id="organizador" name="organizador" placeholder="Nome do organizador" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dataeventos">Data do eventos *</label>
+                        <input type="date" id="dataeventos" name="data_eventos" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacidade">Capacidade *</label>
+                        <input type="number" id="capacidade" name="capacidade" placeholder="Número de pessoas" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipo">Tipo de eventos *</label>
+                        <input type="text" id="tipo" name="tipo" placeholder="Digite o tipo de eventos" required>
+                    </div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" name="descricao" placeholder="Descrição do eventos (opcional)" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Cadastrar eventos</button>
+                <div id="formMessage" class="message"></div>
+            </form>
+        </section>
+
+        <!-- SEÇÃO DE CONSULTAS -->
+        <section class="query-section">
+            <h2>Consultar eventos</h2>
+            <div class="query-controls">
+                <div class="form-group">
+                    <label for="queryType">Escolha o tipo de consulta:</label>
+                    <select id="queryType">
+                        <option value="getAll">Obter Todos os eventos</option>
+                        <option value="getById">Buscar por ID</option>
+                        <option value="getByFilter">Buscar por Nome ou Tipo</option>
+                    </select>
+                </div>
+
+                <div id="queryParamsContainer" class="query-params">
+                    <div class="form-group" id="idInput" style="display: none;">
+                        <label for="eventId">ID do eventos:</label>
+                        <input type="number" id="eventId" placeholder="Digite o ID">
+                    </div>
+                    <div class="form-group" id="filterInput" style="display: none;">
+                        <label for="filterText">Filtro (Nome ou Tipo):</label>
+                        <input type="text" id="filterText" placeholder="Digite o nome ou tipo">
+                    </div>
+                </div>
+
+                <button id="queryBtn" class="btn-secondary">Buscar</button>
+            </div>
+
+            <div id="queryResults" class="results"></div>
+        </section>
+
+        <footer class="footer">
+            Sistema de gestão de eventos desenvolvida por <strong>alunos do curso Técnico em Desenvolvimento de Sistemas</strong>
+        </footer>
+    </div>
+
+    <!-- MODAL DE EDIÇÃO -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar eventos</h3>
+                <button class="modal-close" id="closeModalBtn">&times;</button>
+            </div>
+            <form id="editForm" class="form">
+                <input type="hidden" id="editEventId">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editNome">Nome do eventos *</label>
+                        <input type="text" id="editNome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editOrganizador">Organizador *</label>
+                        <input type="text" id="editOrganizador" name="organizador" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editDataeventos">Data do eventos *</label>
+                        <input type="date" id="editDataeventos" name="data_eventos" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCapacidade">Capacidade *</label>
+                        <input type="number" id="editCapacidade" name="capacidade" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editTipo">Tipo de eventos *</label>
+                        <input type="text" id="editTipo" name="tipo" placeholder="Digite o tipo de eventos" required>
+                    </div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="editDescricao">Descrição</label>
+                    <textarea id="editDescricao" name="descricao" rows="3"></textarea>
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-primary">Salvar Alterações</button>
+                    <button type="button" class="btn-secondary" id="cancelEditBtn">Cancelar</button>
+                </div>
+                <div id="editMessage" class="message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
